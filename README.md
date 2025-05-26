@@ -52,14 +52,43 @@ Within this folder, you'll find:
    drive.mount('/content/drive')
 ### Note on Label Data
 At this stage, we **do not yet have** the final ground-truth labels for:
-- **\(y_{\text{all}}\)**: discrete classification labels (e.g., from CORINE or manual annotation), or
-- **\(y_{\text{reg}}\)**: continuous variables (e.g., from MODIS LAI or other in situ measurements).
+- **\(y_all}\)**: discrete classification labels (e.g., from CORINE or manual annotation), or
+- **\(y_reg}\)**: continuous variables (e.g., from MODIS LAI or other in situ measurements).
 
 Therefore, our current code:
 1. Uses **dummy labels** or random placeholders to demonstrate the Random Forest or Regression pipelines.
 2. Leaves the integration of real label data as a future step once we finalize data downloads or sourcing.
 
-**Next Steps** (once label data is obtained):
-- **CORINE** or another land cover map can be aligned to form `y_all` for supervised classification.
-- **MODIS LAI** or measured ground truths can be used to form `y_reg` for regression tasks.
+### Note on Label Data (y_all, y_reg)
+
+Currently, we **do not have** the final ground-truth label data for:
+- **y_all** (discrete classification classes), typically derived from **CORINE** or another land cover dataset.
+- **y_reg** (continuous target), often from **MODIS LAI** (e.g., MCD15A3H) or other in situ measurements.
+
+**Why we don’t have them yet**:  
+- **Repeated laptop/Colab crashes** when attempting large downloads. Due to network constraints and limited system resources, attempts to download or process these bigger datasets (CORINE ~1GB for Europe, MODIS LAI in multiple granules) were not successful on the current setup.
+
+**How one can obtain these datasets** (if resources permit):
+1. **CORINE Land Cover**  
+   - **Source**: [Copernicus Land Monitoring Service – CORINE](https://land.copernicus.eu/pan-european/corine-land-cover)  
+   - **Approx. Size**: ~1–2GB for all Europe at 100 m resolution.  
+   - **Steps**: 
+     1. Download the full raster or use a “clip” bounding box if the portal offers it.  
+     2. Open in GIS or Python to reproject and clip specifically for your Sentinel-2 AOI.
+2. **MODIS LAI**  
+   - **Source**: [NASA Earthdata Search](https://search.earthdata.nasa.gov/) (e.g., MCD15A3H, 4-day LAI at 500 m).  
+   - **Approx. Size**: Varies by time period and region. The HDF files each contain multiple tiles.  
+   - **Steps**:
+     1. Filter by bounding box and date in Earthdata Search.  
+     2. Download the required granules, convert from HDF to GeoTIFF, and reproject to match Sentinel-2.  
+
+**Future Plans**:  
+Once we have a more stable system or smaller bounding boxes to avoid crashes, we will:
+- **Align** CORINE or MODIS LAI to the Sentinel-2 grid, forming real `y_all` or `y_reg`.
+- **Replace** the dummy labels in our RandomForest/GP code with these actual labels.
+- **Re-run** classification or regression with meaningful accuracy and RMSE metrics.
+
+In the meantime, our repository shows the **data ingestion and ML pipeline** ready to accept real labels once they are successfully downloaded and preprocessed.
+
+
 
