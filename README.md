@@ -108,8 +108,8 @@ It is structured for clarity and reproducibility, following best practices in re
 │   ├── fig1_ndwi_kmeans.jpeg        # Simplified NDWI vs. K-Means workflow
 │   ├── fig2_full_pipeline.jpeg      # Full AI + remote sensing pipeline
 │
-├── requirements.txt                 # (Optional) List of Python dependencies
-└── README.md                        # Documentation for the entire project
+├── requirements.txt                 # Python dependencies (optional)
+└── README.md                        # Full project description and usage
 ---
 
 ### 3.2 How to Use This Repository
