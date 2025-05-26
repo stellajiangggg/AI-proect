@@ -168,8 +168,19 @@ On the test set:
 This shows the RF model was able to perfectly replicate the NDWI-derived water mask, indicating high generalization using only spectral features and vegetation/water indices.
 
 ---
+### 4.4 Dimensionality Reduction (PCA & UMAP)
 
-### 4.4 Visual Comparison of Methods
+To better understand the internal structure of our 5-band feature space, we applied dimensionality reduction techniques:
+
+#### PCA (Principal Component Analysis)
+
+We performed PCA on the standardized stack of five features: B02, B04, B08, NDVI, and NDWI. The resulting 2D projection shows distinct separation between K-Means clusters.
+
+- Water pixels (Cluster 0) formed a dense, compact region in feature space
+- Vegetation and land clusters were more dispersed and variable
+- This supports the idea that water features are more spectrally uniform than vegetated areas
+
+### 4.5 Visual Comparison of Methods
 ```
 
 | Image                            | Description                             |
@@ -184,7 +195,7 @@ This shows the RF model was able to perfectly replicate the NDWI-derived water m
 
 ```
 
-### 4.5 Summary Table
+### 4.6 Summary Table
 ```
 
 | Method                  | Accuracy | Precision | Recall | External Labels? | Interpretability |
