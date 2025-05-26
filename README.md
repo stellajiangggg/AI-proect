@@ -33,7 +33,7 @@ The ultimate goal is to evaluate how well machine learning can replicate or impr
 
 All Sentinel-2 and auxiliary data (e.g., MODIS or CORINE) are stored in the following Google Drive folder:
 
-**[Google Drive Link]**
+**[[Google Drive Link]](https://drive.google.com/drive/folders/1qrzCOUFN0HxSSXjxvkTllgiAwHWXsbrK?usp=sharing)**
 
 Folders include:
 - `S2A_MSIL1C_...SAFE/`: Sentinel-2 L1C imagery (top-of-atmosphere)
