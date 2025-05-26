@@ -90,4 +90,31 @@ This more detailed diagram presents the complete flow of the project from start 
 
 ---
 
-These figures together illustrate the integration of traditional remote sensing indices and modern machine learning methods in a practical, scalable geospatial classification pipeline.
+## 3. GitHub Repository and Code Documentation
+
+This GitHub repository contains all code, figures, and documentation required to reproduce the project results.
+
+It is structured for clarity and reproducibility, following best practices in remote sensing workflows and machine learning pipelines.
+
+---
+
+### 3.1 Repository Structure
+/project-root
+│
+├── notebooks/
+│   └── final_pipeline.ipynb         # Main Google Colab-compatible notebook
+│
+├── figures/
+│   ├── fig1_ndwi_kmeans.jpeg        # Simplified NDWI vs. K-Means workflow
+│   ├── fig2_full_pipeline.jpeg      # Full AI + remote sensing pipeline
+│
+├── requirements.txt                 # (Optional) List of Python dependencies
+└── README.md                        # Documentation for the entire project
+---
+
+### 3.2 How to Use This Repository
+
+**Step 1: Open notebook in Google Colab**  
+
+**Step 2: Mount Google Drive and install dependencies**
+
