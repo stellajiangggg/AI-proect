@@ -99,8 +99,9 @@ It is structured for clarity and reproducibility, following best practices in re
 ---
 
 ### 3.1 Repository Structure
+
+```
 /project-root
-│
 ├── notebooks/
 │   └── final_pipeline.ipynb         # Main Google Colab-compatible notebook
 │
@@ -110,7 +111,7 @@ It is structured for clarity and reproducibility, following best practices in re
 │
 ├── requirements.txt                 # Python dependencies (optional)
 └── README.md                        # Full project description and usage
----
+```
 
 ### 3.2 How to Use This Repository
 
