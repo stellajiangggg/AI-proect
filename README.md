@@ -42,13 +42,6 @@ Note: Within each `.SAFE` folder, `GRANULE` contains `.jp2` band images, which a
 
 ---
 
-### 3. How to Run (on Google Colab)
-
-1. Mount your Google Drive in Colab:
-```python
-from google.colab import drive
-drive.mount('/content/drive')
-
 
 
 ## 2. Methodology Diagrams (Remote Sensing and AI Implementation)
