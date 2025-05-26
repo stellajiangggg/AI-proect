@@ -119,3 +119,81 @@ It is structured for clarity and reproducibility, following best practices in re
 
 **Step 2: Mount Google Drive and install dependencies**
 
+## 4. Results and Analysis
+
+### 4.1 NDVI (L1C vs. L2A)
+
+We compared NDVI values derived from Level-1C (top-of-atmosphere) and Level-2A (surface reflectance) Sentinel-2 products over the same region. Visually, the L2A NDVI map showed better contrast and vegetation detail.
+
+- **Mean NDVI difference (L2A - L1C)**: **+0.0238**
+- **Standard deviation**: **0.1161**
+
+The histogram confirms that most pixels had slightly higher NDVI after atmospheric correction. This validates the use of Level-2A data for more accurate vegetation mapping.
+
+---
+
+### 4.2 NDWI Thresholding vs. K-Means Clustering
+
+#### NDWI Thresholding
+Using a simple threshold (NDWI > 0), we created a binary mask classifying water and land. This serves as our pseudo-ground truth for comparison.
+
+#### K-Means Clustering
+We performed unsupervised clustering (k=4) on:
+- NDVI only
+- NDVI + NDWI
+
+Clusters were manually grouped into water vs. land based on visual inspection. When compared to the NDWI mask:
+
+- **Accuracy**: **88.4%**
+- **Precision (water)**: **0.86**
+- **Recall (water)**: **1.00**
+- **F1-score (water)**: **0.93**
+
+Confusion matrix showed excellent detection of water pixels, though some land areas were misclassified. Visual comparison revealed that K-Means successfully identified major water bodies.
+
+---
+
+### 4.3 Random Forest Classification
+
+A Random Forest (RF) classifier was trained using:
+- Input features: B02, B04, B08, NDVI, and NDWI
+- Labels: NDWI mask (water vs. land)
+
+On the test set:
+
+- **Accuracy**: **100.0%**
+- **Precision & Recall**: **1.00** for both water and land
+- **Confusion Matrix**: Perfect classification
+
+This shows the RF model was able to perfectly replicate the NDWI-derived water mask, indicating high generalization using only spectral features and vegetation/water indices.
+
+---
+
+### 4.4 Visual Comparison of Methods
+```
+
+| Image                            | Description                             |
+|----------------------------------|-----------------------------------------|
+| NDVI L1C & L2A                   | Shows how reflectance correction improves detail |
+| NDVI Difference                  | L2A generally higher than L1C NDVI      |
+| K-Means (NDVI only)              | Classifies broad land types, misses finer water edges |
+| K-Means (NDVI + NDWI)            | More accurate water separation          |
+| NDWI Binary Mask                 | Clean mask used as baseline ground truth |
+| NDWI vs. K-Means (Binary)        | Side-by-side output for confusion matrix |
+| Random Forest vs. NDWI Baseline | Perfect match, confirming model robustness |
+
+```
+
+### 4.5 Summary Table
+```
+
+| Method                  | Accuracy | Precision | Recall | External Labels? | Interpretability |
+|-------------------------|----------|-----------|--------|------------------|------------------|
+| NDWI Thresholding       | N/A      | N/A       | N/A    | No               | Very High        |
+| K-Means (NDVI + NDWI)   | 88.4%    | 0.86      | 1.00   | No               | Moderate         |
+| Random Forest (RF)      | 100%     | 1.00      | 1.00   | NDWI Mask        | High             |
+
+```
+
+
+
