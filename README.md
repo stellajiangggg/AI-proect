@@ -1,51 +1,34 @@
-# AI-proect
-Context & Motivation
-Monitoring vegetation health and land cover is crucial for environmental management, agriculture, and climate studies. Satellite data, like Sentinel-2 (10 m resolution), provide high‐resolution reflectances, while MODIS LAI or CORINE Land Cover offer complementary labeled information. By integrating these datasets, we can train AI/ML models to perform tasks such as:
+## Project Overview & Objectives
 
-Land Cover Classification (urban, vegetation, water, etc.), or
+### Overview
+This project aims to demonstrate how **Sentinel-2** satellite data can be combined with external labeled datasets—such as **MODIS LAI** (for continuous leaf area index values) or **CORINE Land Cover** (for discrete classes)—to perform advanced **machine learning** tasks in Earth observation. By leveraging **Python** libraries (e.g., `rasterio`, `scikit-learn`), we develop an end-to-end workflow:
 
-Continuous Parameter Regression (predicting LAI or other vegetation indices).
+- **Ingest & preprocess** raw Sentinel-2 imagery.
+- **Compute spectral indices** (e.g., NDVI, NDWI) to enhance feature separability.
+- **Align** external label data (MODIS or CORINE) to the Sentinel-2 grid.
+- **Train & evaluate** ML models (e.g., Random Forest, Gaussian Processes) for classification or regression.
+- **Explain results** using XAI techniques (SHAP), and **assess environmental cost**.
 
-Goals
-Fetch & Preprocess Sentinel-2 L1C & L2A images for our study region in central Italy.
+### Objectives
+1. **Data Preprocessing**  
+   - Read and subset Sentinel-2 bands using `rasterio`, handle large tiles by cropping or window sampling.  
+   - Compute key indices (NDVI, NDWI) to distinguish vegetation and water.
 
-Compute Indices like NDVI, NDWI to enhance spectral separability.
+2. **Label Integration**  
+   - Acquire and align **MODIS LAI** for continuous regression tasks, or **CORINE** data for discrete land cover classification.  
+   - Ensure both label data and Sentinel-2 are reprojected to the same coordinate system.
 
-Ingest an external labeled dataset:
+3. **Machine Learning Implementation**  
+   - **Unsupervised Approach**: K-Means clustering for an initial look at spectral groupings.  
+   - **Supervised Approach**: RandomForest (and optionally GaussianProcesses) for classification or regression, using external ground truth.
 
-CORINE for discrete land cover classes (y_all ), or
+4. **Result Visualization & XAI**  
+   - Generate **classification maps** or **LAI predictions** over the chosen region ( part of Italy).  
+   - Employ **SHAP** to interpret model feature importance and provide transparency.
 
-MODIS LAI for continuous “Leaf Area Index” (y_reg).
+5. **Environmental Impact Evaluation**  
+   - Estimate computational resources (GPU/CPU hours), approximate energy usage, and propose strategies to reduce the carbon footprint.
 
-Train & Evaluate ML/AI methods:
+Through this workflow, we illustrate a practical **AI4EO** pipeline that transforms raw satellite data into actionable insights , while highlighting best practices in data handling, machine learning, and environmental awareness.
 
-Unsupervised K-Means,
-
-RandomForest classification/regression,
-
-Gaussian Process for advanced interpolation (optional),
-
-Explainable AI (SHAP) to interpret model features.
-
-Ultimately, we demonstrate how to create an end‐to‐end pipeline—from raw satellite data to final classification/regression maps.
-
-2. Figure Illustrating the Technique (10%)
-(Replace the text below with a real diagram if possible.)
-
-<p align="center"> <img src="PATH_TO_YOUR_FLOWCHART.png" width="400" alt="Workflow Diagram"> </p>
-Figure 1: Project Workflow
-
-Data Ingestion: Sentinel‐2 imagery and external labeled data (CORINE or MODIS LAI).
-
-Preprocessing: Cropping, resampling, index computations (NDVI, NDWI).
-
-ML Model:
-
-Classification (RandomForest, K-Means) for land cover.
-
-Regression (RandomForest, GaussianProcess) for LAI.
-
-Results: Final maps of land cover classes or LAI predictions.
-
-XAI: Using SHAP to interpret feature importance.
 
