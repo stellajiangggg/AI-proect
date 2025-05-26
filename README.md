@@ -1,11 +1,14 @@
-## Project Overview & Objectives
 
+
+## Project Overview & Objectives
+<img width="499" alt="截屏2025-05-26 19 48 37" src="https://github.com/user-attachments/assets/52777800-2f24-4134-a59a-8010d755c0fe" />
 ### 1.Overview
 This project aims to demonstrate how **Sentinel-2** satellite data can be combined with external labeled datasets—such as **MODIS LAI** (for continuous leaf area index values) or **CORINE Land Cover** (for discrete classes)—to perform advanced **machine learning** tasks in Earth observation. By leveraging **Python** libraries (e.g., `rasterio`, `scikit-learn`), we develop an end-to-end workflow:
 
 - **Ingest & preprocess** raw Sentinel-2 imagery.
 - **Compute spectral indices** (e.g., NDVI, NDWI) to enhance feature separability.
-- **Align** external label data (MODIS or CORINE) to the Sentinel-2 grid.
+- **Align** external label data (MODIS or CORINE) to the Sentinel-2
+
 - **Train & evaluate** ML models (e.g., Random Forest, Gaussian Processes) for classification or regression.
 - **Explain results** using XAI techniques (SHAP), and **assess environmental cost**.
 
