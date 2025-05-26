@@ -1,8 +1,6 @@
 
 
 ## Project Overview & Objectives
-<img width="499" alt="截屏2025-05-26 19 48 37" src="https://github.com/user-attachments/assets/52777800-2f24-4134-a59a-8010d755c0fe" />
-
 
 # Mapping Water Bodies and Vegetation with Remote Sensing and Machine Learning
 
